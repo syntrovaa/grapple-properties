@@ -64,6 +64,7 @@ export const properties: Property[] = [
     size: "900 m² stand",
     bedrooms: 4,
     features: ["Approx. 80% complete build"],
+    image: "/images/property-westgate.jpg",
   },
   {
     id: "khumalo-bulawayo",
