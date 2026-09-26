@@ -51,6 +51,7 @@ export const properties: Property[] = [
     price: 1350000,
     size: "3,347 m² land",
     features: ["700 m² warehouse", "5 offices", "Workshop", "Overhead crane", "Borehole", "6 x 10,000L water tanks"],
+    image: "/images/property-graniteside.jpg",
   },
   {
     id: "westgate-sandton",
