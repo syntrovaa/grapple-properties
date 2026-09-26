@@ -5,9 +5,21 @@ function formatPrice(price: number) {
   return `US$${price.toLocaleString("en-US")}`;
 }
 
+function whatsappLink(property: Property) {
+  const message = `Hi, I'm interested in the ${property.title} in ${property.location} (${formatPrice(
+    property.price
+  )}). Is it still available?`;
+  return `https://wa.me/263777251575?text=${encodeURIComponent(message)}`;
+}
+
 export default function PropertyCard({ property }: { property: Property }) {
   return (
-    <article className="flex flex-col border border-line bg-card">
+    <a
+      href={whatsappLink(property)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-col border border-line bg-card transition-colors hover:border-green"
+    >
       <div className="relative h-48 w-full bg-green-soft">
         {property.image ? (
           <Image
@@ -15,7 +27,7 @@ export default function PropertyCard({ property }: { property: Property }) {
             alt={property.location}
             fill
             sizes="(min-width: 1024px) 380px, 100vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
@@ -31,7 +43,9 @@ export default function PropertyCard({ property }: { property: Property }) {
 
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div>
-          <h3 className="font-display text-xl text-ink">{property.title}</h3>
+          <h3 className="font-display text-xl text-ink group-hover:text-green">
+            {property.title}
+          </h3>
           <p className="text-sm text-ink/60">{property.location}</p>
         </div>
 
@@ -48,7 +62,11 @@ export default function PropertyCard({ property }: { property: Property }) {
             <li key={feature}>{feature}</li>
           ))}
         </ul>
+
+        <p className="text-xs font-medium text-green opacity-0 transition-opacity group-hover:opacity-100">
+          Enquire on WhatsApp →
+        </p>
       </div>
-    </article>
+    </a>
   );
 }
